@@ -1,143 +1,108 @@
-import { Row, Col, Card, Button, Input } from "antd";
-import busLogo from "../../assets/bus-logo.png";
+import {
+  Button,
+  Card,
+  Col,
+  Divider,
+  Flex,
+  Form,
+  Input,
+  Row,
+  Steps,
+  type StepProps,
+} from "antd";
+import { Link } from "react-router-dom";
+import SourceDest from "../../component/SourceDest";
 
-export default function Passenger({ headerTitlePosition = "center" }: { headerTitlePosition?: "left" | "center" | "right" }) {
+const stepItems: StepProps[] = [
+  { title: "ค้นหา", status: "finish" },
+  { title: "เที่ยวบริการ", status: "finish" },
+  { title: "ที่นั้ง", status: "finish" },
+  { title: "ผู้โดยสาร", status: "process" },
+  { title: "ชำระเงิน", status: "wait" },
+];
+
+const Passenger: React.FC = () => {
   return (
-    <div
+    <Flex
+      vertical
+      gap={24}
       style={{
-        backgroundColor: "#fffcfcff",
-        maxHeight: "100vh",
-        padding: "0.5rem 2rem",
-        maxWidth: "1200px",
-        width: "100%",
-        margin: "0 auto"
+        maxWidth: "840px",
+        padding: "1rem",
+        marginInline: "auto",
       }}
     >
-      <Card
-        style={{
-          marginBottom: 40,
-          backgroundColor: "#eeececff",
-          padding: "0.00005rem 2rem",
-          maxWidth: "100%",
-          position: "relative"
-        }}
-      >
-        <div style={{ marginBottom: 16 }}>
-          <img
-            src={busLogo}
-            alt="bus logo"
-            style={{
-              width: 148,
-              height: 148,
-              position: "absolute",
-              left: "0.25%",
-              top: "0.001%"
-            }}
-          />
-        </div>
+      <Steps size="small" items={stepItems} />
 
-        <div
-          style={{
-            marginBottom: 14,
-            textAlign: headerTitlePosition,
-            width: "45%"
-          }}
-        >
-          <h2 style={{ color: "#1A237E", margin: 0, fontSize: "2.5rem" }}>SEAT BOOKING</h2>
-        </div>
-      </Card>
+      <Row gutter={[16, 16]}>
+        <Col xs={24} md={14}>
+          <Card>
+            <h2>ข้อมูลผู้โดยสาร</h2>
 
-      <Card
-        style={{
-          backgroundColor: "#eeececff",
-          padding: "1.5rem",
-          width: "100%",
-          border: "none",
-          boxShadow: "none"
-        }}
-      >
-        <Row gutter={[24, 12]}>
-          {/* ชื่อ */}
-          <Col xs={24} md={12} lg={12} xl={24} style={{ marginBottom: "16px" }}>
-            <label
-              style={{
-                color: "#1A237E",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-                display: "block",
-                textAlign: "left"
-              }}
-            >
-              ชื่อ-นามสกุล
-            </label>
-            <Input
-              size="large"
-              style={{ width: "100%", height: "48px", fontSize: "1.25rem" }}
-              placeholder="กรอกชื่อ-นามสกุล"
-            />
-          </Col>
+            <Divider />
 
-          {/* เบอร์โทร */}
-          <Col xs={24} md={12} lg={12} xl={12} style={{ marginBottom: "16px" }}>
-            <label
-              style={{
-                color: "#1A237E",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-                display: "block",
-                textAlign: "left"
-              }}
-            >
-              เบอร์โทรศัพท์
-            </label>
-            <Input
-              size="large"
-              style={{ width: "100%", height: "48px", fontSize: "1.25rem" }}
-              placeholder="กรอกเบอร์โทรศัพท์"
-            />
-          </Col>
+            <Form>
+              <h4>ผู้โดยสารคนที่ 1</h4>
+              <Form.Item label="ชื่อ">
+                <Input />
+              </Form.Item>
 
-          {/* E-mail */}
-          <Col xs={24} md={12} lg={12} xl={12} style={{ marginBottom: "16px" }}>
-            <label
-              style={{
-                color: "#1A237E",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-                display: "block",
-                textAlign: "left"
-              }}
-            >
-              E-mail
-            </label>
-            <Input
-              size="large"
-              style={{ width: "100%", height: "48px", fontSize: "1.25rem" }}
-              placeholder="กรอก E-mail"
-            />
-          </Col>
+              <Form.Item label="บัตรประชาชน">
+                <Input />
+              </Form.Item>
+            </Form>
 
-          
+            <Divider />
 
-          {/* ปุ่มส่ง */}
-          <Col span={24} style={{ textAlign: "center" }}>
-            <Button
-              type="primary"
-              size="large"
-              shape="round"
-              style={{
-                padding: "0 40px",
-                backgroundColor: "#1A237E",
-                borderColor: "#1A237E",
-                height: "56px",
-                fontSize: "1.75rem"
-              }}
-            >
-              ถัดไป
-            </Button>
-          </Col>
-        </Row>
-      </Card>
-    </div>
+            <Form>
+              <h4>ผู้โดยสารคนที่ 2</h4>
+              <Form.Item label="ชื่อ">
+                <Input />
+              </Form.Item>
+
+              <Form.Item label="บัตรประชาชน">
+                <Input />
+              </Form.Item>
+            </Form>
+
+            <Divider />
+
+            <Link to="/5">
+              <Button type="primary" style={{ width: "100%" }}>
+                ถัดไป
+              </Button>
+            </Link>
+          </Card>
+        </Col>
+
+        <Col xs={24} md={10}>
+          <Card
+            actions={[
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingInline: 24,
+                }}
+              >
+                ทั้งหมด{" "}
+                <span style={{ color: "#1677ff", fontWeight: "bold" }}>
+                  ฿700
+                </span>
+              </div>,
+            ]}
+          >
+            <h3>สรุปราคา</h3>
+            <SourceDest />
+          </Card>
+        </Col>
+      </Row>
+
+      <Link to="/3">
+        <Button variant="outlined">กลับ</Button>
+      </Link>
+    </Flex>
   );
-}
+};
+
+export default Passenger;
