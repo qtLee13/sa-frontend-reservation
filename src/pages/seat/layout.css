@@ -1,0 +1,14 @@
+.bus {
+  width: fit-content;
+  margin-inline: auto;
+  padding: 16px;
+  border: 1px solid #979797;
+  border-radius: 48px 48px 16px 16px;
+}
+
+.seat-layout {
+  display: grid;
+  grid-template-columns: 48px 72px 48px 48px;
+  gap: 8px;
+  grid-auto-rows: 48px; /* normal row height */
+}

@@ -1,21 +1,33 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SeatBooking from './pages/search';
-import RoutePage from './pages/route'; 
-import ReportFeedback from './pages/report_feedback'; 
-import Passenger from './pages/passenger'; 
-import BookingInformation from './pages/booking'; 
-import Seatfrom from './pages/seat'; 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Layout } from "antd";
+
+import Search from "./pages/search";
+import SelectRoute from "./pages/route";
+import Seat from "./pages/seat";
+import Passenger from "./pages/passenger";
+import Paymnet from "./pages/payment";
+
+const MyLayout = () => {
+  return (
+    <Layout>
+      <Layout.Content style={{ minHeight: "100vh" }}>
+        <Outlet />
+      </Layout.Content>
+    </Layout>
+  );
+};
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SeatBooking />} />
-        <Route path="/route" element={<RoutePage />} />
-        <Route path="/report" element={<ReportFeedback />} />
-        <Route path="/passenger" element={<Passenger />} />
-        <Route path="/booking" element={<BookingInformation />} />
-        <Route path="/seat" element={<Seatfrom />} />
+        <Route element={<MyLayout />}>
+          <Route path="/" element={<Search />} />
+          <Route path="/2" element={<SelectRoute />} />
+          <Route path="/3" element={<Seat />} />
+          <Route path="/4" element={<Passenger />} />
+          <Route path="/5" element={<Paymnet />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
